@@ -239,6 +239,7 @@
             this.btnOutputSql.TabIndex = 9;
             this.btnOutputSql.Text = "出力";
             this.btnOutputSql.UseVisualStyleBackColor = true;
+            this.btnOutputSql.Click += new System.EventHandler(this.BtnOutputSql_Click);
             // 
             // btnSelectOutputFolder
             // 

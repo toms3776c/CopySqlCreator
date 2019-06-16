@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace CopySqlCreator
 {
@@ -17,8 +18,20 @@ namespace CopySqlCreator
             InitializeComponent();
 
             SetDummyData();
+
+            if (cbxLinkServerOnOff.Checked)
+            {
+                tbxLinkServer.Enabled = true;
+            }
+            else
+            {
+                tbxLinkServer.Enabled = false;
+            }
         }
 
+        /// <summary>
+        /// ツール開発用のダミーデータをセットする
+        /// </summary>
         void SetDummyData()
         {
             tbxServerDest.Text = "vm2016-t01";
@@ -30,11 +43,16 @@ namespace CopySqlCreator
             tbxSchemaSource.Text = "dbo";
 
             cbxLinkServerOnOff.Checked = false;
-            tbxLinkServer.Enabled = false;  // 起動時はイベントが実行されないので、強制的に無効化
+            //tbxLinkServer.Enabled = false;  // 起動時はイベントが実行されないので、強制的に無効化
 
             tbxOutputSql.Text = @"C:\outsql\";
         }
 
+        /// <summary>
+        /// リンクサーバー経由コピーSQLを作成するかのチェックボックスON/OFF処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CbxLinkServerOnOff_CheckedChanged(object sender, EventArgs e)
         {
             //(CheckBox)sender as CheckBox;
@@ -50,5 +68,84 @@ namespace CopySqlCreator
             }
 
         }
+
+        /// <summary>
+        /// コピーSQL出力ボタンの処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnOutputSql_Click(object sender, EventArgs e)
+        {
+            // 入力値のチェック
+            if (!IsInputValueAppropriate())
+            {
+                return;
+            }
+            // SQL作成処理
+
+        }
+
+        /// <summary>
+        /// 各入力値のチェック処理
+        /// </summary>
+        /// <returns></returns>
+        private bool IsInputValueAppropriate()
+        {
+            const string DialogTitle = "入力値チェックエラー";
+
+            if (tbxServerDest.Text.Trim() == "")
+            {
+                Common.MessageShowError("[コピー先]サーバー名が入力されていません", DialogTitle);
+                return false;
+            }
+            if (tbxDbDest.Text.Trim() == "")
+            {
+                Common.MessageShowError("[コピー先]データベース名が入力されていません", DialogTitle);
+                return false;
+            }
+            if (tbxUserDest.Text.Trim() == "")
+            {
+                Common.MessageShowError("[コピー先]ユーザーが入力されていません", DialogTitle);
+                return false;
+            }
+            if (mtbxPasswordDest.Text.Trim() == "")
+            {
+                Common.MessageShowError("[コピー先]パスワードが入力されていません", DialogTitle);
+                return false;
+            }
+            if (tbxDbSource.Text.Trim() == "")
+            {
+                Common.MessageShowError("[コピー元]データベース名が入力されていません", DialogTitle);
+                return false;
+            }
+            if (tbxSchemaSource.Text.Trim() == "")
+            {
+                Common.MessageShowError("[コピー元]スキーマ名が入力されていません", DialogTitle);
+                return false;
+            }
+
+            if (cbxLinkServerOnOff.Checked == true)
+            {
+                if (tbxLinkServer.Text.Trim() == "")
+                {
+                    Common.MessageShowError("[コピー元]リンクサーバー名が入力されていません", DialogTitle);
+                    return false;
+                }
+            }
+
+            if (tbxOutputSql.Text.Trim() == "")
+            {
+                Common.MessageShowError("SQL出力フォルダが入力されていません", DialogTitle);
+                return false;
+            }
+            if (!System.IO.Directory.Exists(tbxOutputSql.Text.Trim()))
+            {
+                Common.MessageShowError("SQL出力フォルダが存在しません", DialogTitle);
+                return false;
+            }
+
+            return true;
+        }
+            
     }
 }
