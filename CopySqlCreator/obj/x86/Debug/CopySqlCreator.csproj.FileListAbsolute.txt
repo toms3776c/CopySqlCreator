@@ -1,0 +1,10 @@
+C:\Dev\C#\CopySqlCreator\CopySqlCreator\bin\x86\Debug\CopySqlCreator.exe.config
+C:\Dev\C#\CopySqlCreator\CopySqlCreator\bin\x86\Debug\CopySqlCreator.exe
+C:\Dev\C#\CopySqlCreator\CopySqlCreator\bin\x86\Debug\CopySqlCreator.pdb
+C:\Dev\C#\CopySqlCreator\CopySqlCreator\obj\x86\Debug\CopySqlCreator.csprojAssemblyReference.cache
+C:\Dev\C#\CopySqlCreator\CopySqlCreator\obj\x86\Debug\CopySqlCreator.Form1.resources
+C:\Dev\C#\CopySqlCreator\CopySqlCreator\obj\x86\Debug\CopySqlCreator.Properties.Resources.resources
+C:\Dev\C#\CopySqlCreator\CopySqlCreator\obj\x86\Debug\CopySqlCreator.csproj.GenerateResource.cache
+C:\Dev\C#\CopySqlCreator\CopySqlCreator\obj\x86\Debug\CopySqlCreator.csproj.CoreCompileInputs.cache
+C:\Dev\C#\CopySqlCreator\CopySqlCreator\obj\x86\Debug\CopySqlCreator.exe
+C:\Dev\C#\CopySqlCreator\CopySqlCreator\obj\x86\Debug\CopySqlCreator.pdb
