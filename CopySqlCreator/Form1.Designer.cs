@@ -45,7 +45,7 @@
             this.tbxDbSource = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cbxLinkServerOnOff = new System.Windows.Forms.CheckBox();
-            this.tbxOutputSql = new System.Windows.Forms.TextBox();
+            this.tbxOutputSqlFolder = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnOutputSql = new System.Windows.Forms.Button();
             this.btnSelectOutputFolder = new System.Windows.Forms.Button();
@@ -212,13 +212,13 @@
             this.cbxLinkServerOnOff.UseVisualStyleBackColor = true;
             this.cbxLinkServerOnOff.CheckedChanged += new System.EventHandler(this.CbxLinkServerOnOff_CheckedChanged);
             // 
-            // tbxOutputSql
+            // tbxOutputSqlFolder
             // 
-            this.tbxOutputSql.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbxOutputSql.Location = new System.Drawing.Point(147, 233);
-            this.tbxOutputSql.Name = "tbxOutputSql";
-            this.tbxOutputSql.Size = new System.Drawing.Size(545, 27);
-            this.tbxOutputSql.TabIndex = 7;
+            this.tbxOutputSqlFolder.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbxOutputSqlFolder.Location = new System.Drawing.Point(147, 233);
+            this.tbxOutputSqlFolder.Name = "tbxOutputSqlFolder";
+            this.tbxOutputSqlFolder.Size = new System.Drawing.Size(545, 27);
+            this.tbxOutputSqlFolder.TabIndex = 7;
             // 
             // label5
             // 
@@ -259,7 +259,7 @@
             this.Controls.Add(this.btnSelectOutputFolder);
             this.Controls.Add(this.btnOutputSql);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.tbxOutputSql);
+            this.Controls.Add(this.tbxOutputSqlFolder);
             this.Controls.Add(this.gbxSource);
             this.Controls.Add(this.gbxDest);
             this.Name = "Form1";
@@ -292,7 +292,7 @@
         private System.Windows.Forms.TextBox tbxDbSource;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox cbxLinkServerOnOff;
-        private System.Windows.Forms.TextBox tbxOutputSql;
+        private System.Windows.Forms.TextBox tbxOutputSqlFolder;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnOutputSql;
         private System.Windows.Forms.Button btnSelectOutputFolder;

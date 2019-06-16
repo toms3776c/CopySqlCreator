@@ -45,7 +45,7 @@ namespace CopySqlCreator
             cbxLinkServerOnOff.Checked = false;
             //tbxLinkServer.Enabled = false;  // 起動時はイベントが実行されないので、強制的に無効化
 
-            tbxOutputSql.Text = @"C:\outsql\";
+            tbxOutputSqlFolder.Text = @"C:\outsql\";
         }
 
         /// <summary>
@@ -81,7 +81,27 @@ namespace CopySqlCreator
             {
                 return;
             }
-            // SQL作成処理
+            
+            //// SQL作成処理
+            //SqlCreator sqlCreator_x = new SqlCreator(
+            //    tbxServerDest.Text.Trim(),
+            //    tbxDbDest.Text.Trim(),
+            //    tbxUserDest.Text.Trim(),
+            //    mtbxPasswordDest.Text.Trim(),
+            //    "");
+
+            string linkServer = "";
+            if (cbxLinkServerOnOff.Checked)
+            {
+                linkServer = tbxLinkServer.Text.Trim();
+            }
+            SqlCreatorConfig config = new SqlCreatorConfig(
+                tbxServerDest.Text.Trim(), tbxDbDest.Text.Trim(), tbxUserDest.Text.Trim(), mtbxPasswordDest.Text.Trim(),
+                tbxDbSource.Text.Trim(), tbxSchemaSource.Text.Trim(), linkServer,
+                tbxOutputSqlFolder.Text.Trim());
+
+            SqlCreator sqlCreator = new SqlCreator(config);
+            sqlCreator.CreateSql();
 
         }
 
@@ -133,12 +153,12 @@ namespace CopySqlCreator
                 }
             }
 
-            if (tbxOutputSql.Text.Trim() == "")
+            if (tbxOutputSqlFolder.Text.Trim() == "")
             {
                 Common.MessageShowError("SQL出力フォルダが入力されていません", DialogTitle);
                 return false;
             }
-            if (!System.IO.Directory.Exists(tbxOutputSql.Text.Trim()))
+            if (!System.IO.Directory.Exists(tbxOutputSqlFolder.Text.Trim()))
             {
                 Common.MessageShowError("SQL出力フォルダが存在しません", DialogTitle);
                 return false;

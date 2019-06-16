@@ -20,14 +20,14 @@ namespace CopySqlCreator
         /// <para name="dbUser">ユーザ名</para>
         /// <para name="dbPass">パスワード</para>
         /// </summary>
-        public DBManagerForSQLServer(string dbServer, string dbName, string dbUser, string dbPass)
+        public DBManagerForSQLServer(string dbServer, string dbName, string dbUser, string dbPassword)
         {
             // 接続文字列を生成
             string connectString =
             "Data Source = " + dbServer
             + ";Initial Catalog = " + dbName
             + ";User ID = " + dbUser
-            + ";Password = " + dbPass
+            + ";Password = " + dbPassword
             + ";MultipleActiveResultSets=True";
 
             // SqlConnection の新しいインスタンスを生成 (接続文字列を指定)
