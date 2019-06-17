@@ -31,7 +31,13 @@ namespace CopySqlCreator
             string outputSqlFolder)
         {
             this.ServerDest = serverDest;
-
+            this.DbDest = DbDest;
+            this.User = user;
+            this.Password = password;
+            this.DbSource = dbSource;
+            this.SchemaSource = schemaSource;
+            this.LinkServerSource = linkServerSource;
+            this.OutputSqlFolder = outputSqlFolder;
         }
     }
 }

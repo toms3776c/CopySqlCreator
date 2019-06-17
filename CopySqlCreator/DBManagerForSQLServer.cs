@@ -13,6 +13,8 @@ namespace CopySqlCreator
         private SqlConnection sqlConnection;
         private SqlTransaction sqlTransaction;
 
+        public string ErrorInfo { get; set; }
+
         /// <summary>
         /// コンストラクタ（DB接続）
         /// <para name="dbServer">DBサーバ名</para>
@@ -32,9 +34,26 @@ namespace CopySqlCreator
 
             // SqlConnection の新しいインスタンスを生成 (接続文字列を指定)
             this.sqlConnection = new SqlConnection(connectString);
+        }
 
-            // データベース接続を開く
-            this.sqlConnection.Open();
+        /// <summary>
+        /// DB接続
+        /// </summary>
+        /// <returns></returns>
+        public bool Open()
+        {
+            try
+            {
+                // データベース接続を開く
+                this.sqlConnection.Open();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorInfo = ex.Message; // エラー情報を覚えておく
+                return false;
+            }
+
         }
 
         /// <summary>
