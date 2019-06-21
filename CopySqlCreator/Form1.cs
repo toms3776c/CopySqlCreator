@@ -82,14 +82,6 @@ namespace CopySqlCreator
                 return;
             }
             
-            //// SQL作成処理
-            //SqlCreator sqlCreator_x = new SqlCreator(
-            //    tbxServerDest.Text.Trim(),
-            //    tbxDbDest.Text.Trim(),
-            //    tbxUserDest.Text.Trim(),
-            //    mtbxPasswordDest.Text.Trim(),
-            //    "");
-
             string linkServer = "";
             if (cbxLinkServerOnOff.Checked)
             {
@@ -101,7 +93,11 @@ namespace CopySqlCreator
                 tbxOutputSqlFolder.Text.Trim());
 
             SqlCreator sqlCreator = new SqlCreator(config);
-            sqlCreator.CreateSql();
+
+            string procMessage = "";
+            sqlCreator.CreateSql(ref procMessage);
+
+            MessageBox.Show(procMessage);
 
         }
 
