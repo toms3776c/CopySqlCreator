@@ -46,7 +46,7 @@ namespace CopySqlCreator
         private bool OutputSql(string sql, string table)
         {
             string filePath = "";
-            if (dbLinkServer != "")
+            if (dbLinkServer == "")
             {
                 filePath = Path.Combine(outputSqlFolder, table + FileSuffixNormalCopy);
             }
