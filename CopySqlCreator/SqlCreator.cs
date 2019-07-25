@@ -64,6 +64,8 @@ namespace CopySqlCreator
                 }
                 catch (Exception ex)
                 {
+                    // エラー情報を出した・・・
+
                     return false;
                 }
             }
@@ -132,11 +134,51 @@ namespace CopySqlCreator
         }
 
 
+        private string CreateCreateIndexSql(string table)
+        {
+            string sql = "";
+
+            return sql;
+        }
+
+        private string CreateDropIndexSql(string table)
+        {
+            string sql = "";
+
+            return sql;
+        }
 
 
 
+        private bool ExistsIdentityField(string table, ref int identityFlg)
+        {
+            string sql = "";
+            sql += "select  isnull(max(cast(c.is_identity as int)), 0) identity_flg ";
+            sql += "from    sys.tables t left join sys.columns c on ";
+            sql += "          t.object_id = c.object_id ";
+            sql += "where   t.name = '" + table + "' ";
+            sql += "  ";
 
+            try
+            {
+                var reader = dbManager.ExecuteQuery(sql);
+                if (!reader.HasRows)
+                {
+                    identityFlg = 0;    // レコード無いときは、IDENTITY列無しと判定しておく（暫定）
+                }
+                else
+                {
+                    identityFlg = (int)reader["identity_flg"];
+                }
+                return true;    
+            }
+            catch (Exception ex)
+            {
+                // エラー情報を出したい・・・
 
+                return false;
+            }
+        }
 
 
 
@@ -205,14 +247,21 @@ namespace CopySqlCreator
                 // テーブル別のフィールド取得
                 string fields = GetFieldDefinition(table);
 
-                //
+                // IDENTITY列有無のチェック
+                int identityFlg = 0;
+                if (!ExistsIdentityField(table, ref identityFlg))
+                {
 
-                //
+                }
 
-                //
+                // DROP INDEX文の作成
+                string dropIndexSql = CreateDropIndexSql(table);
+
+                // CREATE INDEX文の作成
+                string createIndexSql = CreateCreateIndexSql(table);
 
                 // SQLを組み立て
-                string outputSql = CreateTableCopySql(table, fields, 0, "", "");
+                string outputSql = CreateTableCopySql(table, fields, 0, dropIndexSql, createIndexSql);
 
                 // SQLを出力
                 if (!OutputSql(outputSql, table))
@@ -221,7 +270,6 @@ namespace CopySqlCreator
 
                 }
             }
-
 
             dbManager.Close();
 
